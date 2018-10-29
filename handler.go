@@ -162,3 +162,8 @@ func HandlerTrack(w http.ResponseWriter, r *http.Request) {
 		}
 	}
 }
+
+func HandlerAdmin(w http.ResponseWriter, r *http.Request){
+    encode:= string(db.Count())
+    fmt.Printf(encode)
+}

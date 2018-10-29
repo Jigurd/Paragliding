@@ -66,6 +66,7 @@ func main() {
 
 	apiStruct = Metadata{Uptime: "", Info: "Info for paragliding tracks.", Version: "v1"}
 
+	http.HandleFunc("/paragliding/api/admin/tracks_count/", HandlerAdmin)
 	http.HandleFunc("/paragliding/api/webhook/new_track", HandlerWebhook)
 	http.HandleFunc("/paragliding/api/webhook/new_track/", HandlerWebhook)
 	http.HandleFunc("/paragliding/api/track/", HandlerTrack)
