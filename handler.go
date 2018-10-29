@@ -31,7 +31,7 @@ func HandlerAPI(w http.ResponseWriter, r *http.Request) {
 	} else {
 		// if there is rubbish behind /api/, return 404
 		http.Error(w, http.StatusText(http.StatusNotFound), http.StatusNotFound)
-		fmt.Fprint(w, "It was I, Judas!")
+		//fmt.Fprint(w, "It was I, Judas!")
 	}
 }
 
@@ -44,7 +44,7 @@ func HandlerAPIRedirect(w http.ResponseWriter, r *http.Request) {
 	} else {
 		//else return 404
 		http.Error(w, http.StatusText(http.StatusNotFound), http.StatusNotFound)
-		fmt.Fprint(w, "You're bad and should feel bad (failed to resolve URL)")
+		//fmt.Fprint(w, "You're bad and should feel bad (failed to resolve URL)")
 	}
 
 }
@@ -123,7 +123,7 @@ func HandlerTrack(w http.ResponseWriter, r *http.Request) {
 					json.NewEncoder(w).Encode(track)
 				} else { //if this track could not be fetched, throw 404
 					http.Error(w, http.StatusText(http.StatusNotFound), http.StatusNotFound)
-					fmt.Fprint(w, "\nWhy are we still here, just to suffer?\n", requestedID)
+					//fmt.Fprint(w, "\nWhy are we still here, just to suffer?\n", requestedID)
 				}
 
 			} else if len(parts) == 6 || (len(parts) == 7 && parts[6] == "") {
@@ -157,7 +157,7 @@ func HandlerTrack(w http.ResponseWriter, r *http.Request) {
 
 			} else {
 				http.Error(w, http.StatusText(http.StatusNotFound), http.StatusNotFound)
-				fmt.Fprint(w, "\nMy arm, even my fingers")
+				//fmt.Fprint(w, "\nMy arm, even my fingers")
 			}
 		}
 	}

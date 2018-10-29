@@ -1,11 +1,10 @@
 package main
 
 import (
-	"encoding/json"
-	"fmt"
-	"net/http"
-	"strconv"
-	"strings"
+    "encoding/json"
+    "net/http"
+    "strconv"
+    "strings"
 )
 
 const pagesize = 5 //sets number of ids returned per page
@@ -41,7 +40,7 @@ func HandlerTicker(w http.ResponseWriter, r *http.Request) {
 	if !isNumeric(requestString) && requestString != "" {
 		//check if the ID is numeric (and that the request was not for all tracks
 		http.Error(w, http.StatusText(http.StatusBadRequest), http.StatusBadRequest)
-		fmt.Fprint(w, "The body I've lost")
+		//fmt.Fprint(w, "The body I've lost")
 
 	} else {
 		var err error
@@ -57,13 +56,13 @@ func HandlerTicker(w http.ResponseWriter, r *http.Request) {
 
 		if err != nil { //if there is an error
 			http.Error(w, http.StatusText(http.StatusBadRequest), http.StatusBadRequest)
-			fmt.Fprint(w, "The comrades I have lost (error !=nil):", err)
+			//fmt.Fprint(w, "The comrades I have lost (error !=nil):", err)
 		} else if !IsInSlice(tracks, requestedID) && requestedID != 0 { //If the ID is not in slice and not default
 			http.Error(w, http.StatusText(http.StatusBadRequest), http.StatusBadRequest)
-			fmt.Fprint(w, "It won't stop hurting. (Not in slice)")
+			//fmt.Fprint(w, "It won't stop hurting. (Not in slice)")
 		} else if !AllOK { //if there was some error in finding the index
 			http.Error(w, http.StatusText(http.StatusBadRequest), http.StatusBadRequest)
-			fmt.Fprint(w, "It's like they're all still here (AllOK)")
+			//fmt.Fprint(w, "It's like they're all still here (AllOK)")
 		} else { //if nothing has gone wrong, commence function
 
 			for i := 0; i < pagesize; i++ { //put up to 5 elements in the page array
