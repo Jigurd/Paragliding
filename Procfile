@@ -1,1 +1,1 @@
-web: Paragliding
+web: main
