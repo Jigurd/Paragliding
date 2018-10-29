@@ -133,7 +133,7 @@ func HandlerTrack(w http.ResponseWriter, r *http.Request) {
 				track, err := db.Get(requestedID) //copy the track
 				if err != nil {                   //if that doesn't work throw 404
 					http.Error(w, http.StatusText(http.StatusNotFound), http.StatusNotFound)
-					fmt.Fprint(w, "\nEvery night, I feel my leg")
+					//fmt.Fprint(w, "\nEvery night, I feel my leg")
 				} else { //if it does, return selected field
 					switch strings.ToLower(parts[5]) {
 					case "glider":
@@ -165,5 +165,5 @@ func HandlerTrack(w http.ResponseWriter, r *http.Request) {
 
 func HandlerAdmin(w http.ResponseWriter, r *http.Request){
     encode:= string(db.Count())
-    fmt.Printf(encode)
+    fmt.Fprintf(w, encode)
 }
