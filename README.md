@@ -8,4 +8,6 @@ Me Being Bad
 
 Known Issues
 - the webhook technically spits out something, but it is not what was specified. The function I had planned is a mess, and I spent the final hours of the time trying to get it to work. 
-  This meant I did not have time to implement Clock, which is fairly easy.
+  This meant I did not have time to implement Clock and the second part of Admin, which are both fairly easy.
+- For some reason Heroku is refusing to use the latest version of the code? I've pushed a version with my jokey error messages disabled, and Heroku is accepting it, but it keeps using
+  the old version. No clue why.
