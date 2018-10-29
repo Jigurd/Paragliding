@@ -72,10 +72,12 @@ func HandlerTrack(w http.ResponseWriter, r *http.Request) {
 				Millisec(),
 			}
 			fmt.Fprintf(w, "track id: %v", encode.Timestamp) //return the id
-			db.Add(encode)                                  //add to the database
+			db.Add(encode)                                   //add to the database
 		} else {
 			http.Error(w, http.StatusText(http.StatusBadRequest), http.StatusBadRequest)
 		}
+
+		PingWebhooks()
 
 	} else if r.Method == "GET" {
 		parts := strings.Split(r.URL.Path, "/")
@@ -92,11 +94,11 @@ func HandlerTrack(w http.ResponseWriter, r *http.Request) {
 		} else {
 			requestedID, err := strconv.ParseInt(requestString, 10, 64)
 
-			if err != nil{ //if there is a problem parsing the ID, return an error
-                http.Error(w, http.StatusText(http.StatusBadRequest), http.StatusBadRequest)
-                fmt.Fprint(w," ", err)
-                return
-            }
+			if err != nil { //if there is a problem parsing the ID, return an error
+				http.Error(w, http.StatusText(http.StatusBadRequest), http.StatusBadRequest)
+				fmt.Fprint(w, " ", err)
+				return
+			}
 
 			//the OR clause in the following if statements are to deal with trailing slashes.
 			//We check whether an URL is of the correct length, or if the last segment of the URL is blank.
