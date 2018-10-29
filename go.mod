@@ -1,4 +1,4 @@
-module "https://github.com/Jigurd/Paragliding.git"
+module "https://github.com/Jigurd/Paragliding"
 
 require (
 	github.com/kr/pretty v0.1.0 // indirect
