@@ -90,7 +90,13 @@ func HandlerTrack(w http.ResponseWriter, r *http.Request) {
 			http.Error(w, http.StatusText(http.StatusBadRequest), http.StatusBadRequest)
 
 		} else {
-			requestedID, _ := strconv.ParseInt(requestString, 10, 64)
+			requestedID, err := strconv.ParseInt(requestString, 10, 64)
+
+			if err != nil{ //if there is a problem parsing the ID, return an error
+                http.Error(w, http.StatusText(http.StatusBadRequest), http.StatusBadRequest)
+                fmt.Fprint(w," ", err)
+                return
+            }
 
 			//the OR clause in the following if statements are to deal with trailing slashes.
 			//We check whether an URL is of the correct length, or if the last segment of the URL is blank.

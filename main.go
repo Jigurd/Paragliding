@@ -66,12 +66,12 @@ func main() {
 
 	apiStruct = Metadata{Uptime: "", Info: "Info for paragliding tracks.", Version: "v1"}
 
-	http.HandleFunc("paragliding/api/webhook/new_track", HandlerWebhook)
-	http.HandleFunc("paragliding/api/webhook/new_track/", HandlerWebhook)
+	http.HandleFunc("/paragliding/api/webhook/new_track", HandlerWebhook)
+	http.HandleFunc("/paragliding/api/webhook/new_track/", HandlerWebhook)
 	http.HandleFunc("/paragliding/api/track/", HandlerTrack)
 	http.HandleFunc("/paragliding/api/ticker", HandlerTicker)
 	http.HandleFunc("/paragliding/api/ticker/", HandlerTicker)
-	http.HandleFunc("/paragliding/api/", HandlerAPI)
+	http.HandleFunc("/paragliding/api", HandlerAPI)
 	http.HandleFunc("/paragliding/", HandlerAPIRedirect)
 	log.Fatal(http.ListenAndServe(port, nil))
 }

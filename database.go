@@ -116,3 +116,21 @@ func (db *DBInfo) GetAll() []Track {
 
 	return all
 }
+
+
+//Delete a track from the database
+func (db *DBInfo) Delete(id int64) bool {
+    session, err := mgo.Dial(db.DBurl)
+    if err != nil {
+        panic(err)
+    }
+    defer session.Close()
+
+    allWasGood := true
+
+    err = session.DB(db.DBname).C(db.TrackCollection).Remove(bson.M{"timestamp": id})
+    if err != nil {
+        allWasGood = false
+    }
+    return allWasGood
+}

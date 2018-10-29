@@ -78,3 +78,16 @@ func (db *DBInfo) GetAllHooks() []Webhook {
 
 	return all
 }
+
+//Delete a webhook from the database
+func (db *DBInfo) DeleteHook(id int64) error {
+    session, err := mgo.Dial(db.DBurl)
+    if err != nil {
+        panic(err)
+    }
+    defer session.Close()
+
+    err = session.DB(db.DBname).C(db.HookCollection).Remove(bson.M{"timestamp": id})
+
+    return err
+}
